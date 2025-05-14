@@ -1,0 +1,46 @@
+@import './colors.css';
+
+.navbar {
+  background-color: var(--orange-medium);
+  padding: 10px 20px;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+
+.nav-center {
+  display: flex;
+  gap: 1rem;
+  
+}
+.nav-center li{
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--copper);
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--orange-warm);
+}
+
+
+.animations {
+  color: var(--copper);
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  margin-right: auto;
+}

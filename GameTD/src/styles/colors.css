@@ -1,0 +1,13 @@
+
+/* colors.css */
+:root {
+  --orange-light: #FFA500;      /* Naranja Claro */
+  --orange-pastel: #FFB74D;     /* Naranja Pastel */
+  --orange-medium: #FF8C00;     /* Naranja Medio */
+  --orange-warm: #FF5722;       /* Naranja Cálido */
+  --orange-intense: #D32F2F;    /* Naranja Intenso */
+  --peach: #FF7043;             /* Durazno */
+  --amber: #FFC107;             /* Ámbar */
+  --neon-orange: #FF3D00;       /* Naranja Neón */
+  --copper: #B54B1F;            /* Cobre */
+}
