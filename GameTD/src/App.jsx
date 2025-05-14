@@ -5,6 +5,11 @@ import NavBar from './component/navbar.jsx';
 import Card from './component/card.jsx';
 import Modal from './component/modal.jsx';
 import CajaTridimensional from './animations/3dAnimations/cajaTridimensional.jsx';
+import LibroAnimado from './animations/3dAnimations/libroAnimado.jsx';
+
+
+
+
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -35,20 +40,20 @@ function App() {
           resume="Cubo que gira 360º"
           onClick={() => openModalWith(<CajaTridimensional />, 'Caja Tridimensional')}
         />
-
-        
-
-
-        <Modal show={showModal} onClose={closeModal} title={selectedTitle}>
-          {selectedAnimation}
-        </Modal>
-
-        <h3>Aquí irán nuevas animaciones</h3>
+        <Card
+          title="Libro Animado"
+          resume="Animación que hace pasar páginas"
+          onClick={() => openModalWith(<LibroAnimado />, 'Libro Animado')}
+        />
       </section>
 
       <section className='animation-2d'>
         <h3>Aquí irán las animaciones 2D</h3>
       </section>
+
+       <Modal show={showModal} onClose={closeModal} title={selectedTitle}>
+          {selectedAnimation}
+        </Modal>
     </>
   );
 }
