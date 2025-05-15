@@ -6,7 +6,7 @@ import Card from './component/card.jsx';
 import Modal from './component/modal.jsx';
 import CajaTridimensional from './animations/3dAnimations/cajaTridimensional.jsx';
 import LibroAnimado from './animations/3dAnimations/libroAnimado.jsx';
-
+import GaleriaImagenes from './animations/3dAnimations/galeriaImagenes.jsx'
 
 
 
@@ -44,6 +44,12 @@ function App() {
           title="Libro Animado"
           resume="Animación que hace pasar páginas"
           onClick={() => openModalWith(<LibroAnimado />, 'Libro Animado')}
+        />
+
+          <Card
+          title="Galeria de imagenes"
+          resume="Carrusell de imagenes que se desplazan al hacer click en el mouse y girarlo hacia izquierda o derecha"
+          onClick={() => openModalWith(<GaleriaImagenes />, 'Galeria Imagenes')}
         />
       </section>
 
