@@ -1,0 +1,19 @@
+
+.scene {
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(to top, #a3d9ff, #e6f4ff);
+  position: relative;
+  overflow: hidden;
+}
+
+.cat-sprite {
+  width: 225px;
+  height: 225px;
+  background-image: url("../img/Spritesheet_Gatos.jpg");
+  background-size: 672px 450px; 
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 0;
+  image-rendering: pixelated;
+}
