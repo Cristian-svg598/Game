@@ -8,7 +8,7 @@ import CajaTridimensional from './animations/3dAnimations/cajaTridimensional.jsx
 import LibroAnimado from './animations/3dAnimations/libroAnimado.jsx';
 import GaleriaImagenes from './animations/3dAnimations/galeriaImagenes.jsx'
 import GatoCorriendo from './animations/2dAnimations/gatoCorriendo.jsx'
-
+import BouncingBall from './animations/2dAnimations/bouncingBall.jsx';
 
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
           onClick={() => openModalWith(<LibroAnimado />, 'Libro Animado')}
         />
 
-          <Card
+        <Card
           title="Galería de imagenes"
           resume="Carrusell de imagenes que se desplazan al hacer click en el mouse y girarlo hacia izquierda o derecha"
           onClick={() => openModalWith(<GaleriaImagenes />, 'Galeria Imagenes')}
@@ -54,16 +54,25 @@ function App() {
       </section>
 
       <section className='animation-2d'>
-         <Card
+        <Card
           title="Gato corriendo"
           resume="Animación de un gato corriendo"
           onClick={() => openModalWith(<GatoCorriendo />, 'Gato Corriendo')}
         />
+        <Card
+          title="Bola saltarina"
+          resume="Animación de una Bola saltarina"
+          onClick={() => openModalWith(<BouncingBall />, 'Bola saltarina')}
+        />
+
+
+
+
       </section>
 
-       <Modal show={showModal} onClose={closeModal} title={selectedTitle}>
-          {selectedAnimation}
-        </Modal>
+      <Modal show={showModal} onClose={closeModal} title={selectedTitle}>
+        {selectedAnimation}
+      </Modal>
     </>
   );
 }

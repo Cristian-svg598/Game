@@ -1,8 +1,9 @@
 import React from "react";
+import "../styles/card.css"; 
 
 const Card = ({ title, resume, onClick }) => {
     return (
-        <div className="card" style={{ width: '18rem' }}>
+        <div className="custom-card">
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">{resume}</p>
