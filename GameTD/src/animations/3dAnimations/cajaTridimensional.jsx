@@ -1,43 +1,32 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import '../../styles/cajaTridimensional.css';
 
 const CajaTridimensional = () => {
   const cubeRef = useRef(null);
-  const [isMouseInside, setIsMouseInside] = useState(false);
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (isMouseInside) {
-        const cubeRect = cubeRef.current.getBoundingClientRect();
-        const cubeWidth = cubeRect.width;
-        const cubeHeight = cubeRect.height;
+  const handleMouseMove = (e) => {
+    if (!cubeRef.current) return;
 
-       
-        const xRotation = ((e.clientY - cubeRect.top) / cubeHeight - 0.5) * 90;
-        const yRotation = ((e.clientX - cubeRect.left) / cubeWidth - 0.5) * 90;
+    const cubeRect = cubeRef.current.getBoundingClientRect();
+    const cubeWidth = cubeRect.width;
+    const cubeHeight = cubeRect.height;
 
-       
-        cubeRef.current.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
-      }
-    };
+    const xRotation = ((e.clientY - cubeRect.top) / cubeHeight - 0.5) * 90;
+    const yRotation = ((e.clientX - cubeRect.left) / cubeWidth - 0.5) * 90;
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [isMouseInside]);
-
-  const handleMouseEnter = () => {
-    setIsMouseInside(true); 
+    cubeRef.current.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
   };
 
-  const handleMouseLeave = () => {
-    setIsMouseInside(false);
+  const resetRotation = () => {
+    if (!cubeRef.current) return;
+    cubeRef.current.style.transform = `rotateX(0deg) rotateY(0deg)`;
   };
 
   return (
     <div
       className="scene"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={resetRotation}
     >
       <div className="cube" ref={cubeRef}>
         <div className="face front">Frontal</div>

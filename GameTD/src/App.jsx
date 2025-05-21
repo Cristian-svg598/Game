@@ -9,7 +9,7 @@ import LibroAnimado from './animations/3dAnimations/libroAnimado.jsx';
 import GaleriaImagenes from './animations/3dAnimations/galeriaImagenes.jsx'
 import GatoCorriendo from './animations/2dAnimations/gatoCorriendo.jsx'
 import BouncingBall from './animations/2dAnimations/bouncingBall.jsx';
-
+import ParticlesBackground from './animations/backgroundAnimations/particleBacground.jsx';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -69,7 +69,16 @@ function App() {
 
 
       </section>
+      <section className='background-animation'>
+        <Card
+          title="Partículas Interactivas"
+          resume="Fondo animado de partículas"
+          onClick={() => openModalWith(<ParticlesBackground />, '')}
+        />
 
+
+
+      </section>
       <Modal show={showModal} onClose={closeModal} title={selectedTitle}>
         {selectedAnimation}
       </Modal>
