@@ -9,8 +9,9 @@ import LibroAnimado from './animations/3dAnimations/libroAnimado.jsx';
 import GaleriaImagenes from './animations/3dAnimations/galeriaImagenes.jsx'
 import GatoCorriendo from './animations/2dAnimations/gatoCorriendo.jsx'
 import BouncingBall from './animations/2dAnimations/bouncingBall.jsx';
-import ParticlesBackground from './animations/backgroundAnimations/particleBacground.jsx';
 import NeuralBackground from './animations/backgroundAnimations/neuronalBackground.jsx';
+import LithtingAround from './animations/backgroundAnimations/lightingAround.jsx';
+import SquareTransmision from './animations/backgroundAnimations/squareTransmision.jsx';
 
 
 function App() {
@@ -69,7 +70,9 @@ function App() {
 
 
 
-      <NeuralBackground/>
+      {/* <NeuralBackground/> */}
+      {/* <LithtingAround/> */}
+      <SquareTransmision/>
       </section>
      
       <Modal show={showModal} onClose={closeModal} title={selectedTitle}>
