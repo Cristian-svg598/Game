@@ -13,6 +13,8 @@ import NeuralBackground from './animations/backgroundAnimations/neuronalBackgrou
 import LithtingAround from './animations/backgroundAnimations/lightingAround.jsx';
 import SquareTransmision from './animations/backgroundAnimations/squareTransmision.jsx';
 import ExplosionBackground from './animations/backgroundAnimations/explosionBackground.jsx';
+import Starfield from './animations/backgroundAnimations/starfield.jsx';
+
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -72,8 +74,9 @@ function App() {
 
       {/* <NeuralBackground/> */}
       {/* <LithtingAround/> */}
-      <SquareTransmision/>
+      {/* <SquareTransmision/> */}
       {/* <ExplosionBackground/> */}
+      <Starfield/>
       </section>
      
       <Modal show={showModal} onClose={closeModal} title={selectedTitle}>
