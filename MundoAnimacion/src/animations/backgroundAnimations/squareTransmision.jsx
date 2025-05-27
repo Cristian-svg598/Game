@@ -12,8 +12,8 @@ const SquareTransmision = () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        const nodeCount = 60;
-        const minDistance = 150;
+        const nodeCount = 200;
+        const minDistance = 50;
         const nodes = [];
 
         for (let i = 0; i < nodeCount;) {
@@ -21,7 +21,8 @@ const SquareTransmision = () => {
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
                 connections: [],
-                glow: 0
+                glow: 0,
+                baseSize: Math.random() * 10
             };
 
             let tooClose = false;
@@ -110,7 +111,7 @@ const SquareTransmision = () => {
             // Dibujar nodos visibles
             nodes.forEach(node => {
                 if (node.glow > 0.01) {
-                    const size = 4 + node.glow * 6;
+                    const size = node.baseSize + node.glow * 6;
                     context.fillStyle = `rgba(0, 255, 204, ${0.2 + node.glow})`;
                     context.beginPath();
                     context.arc(node.x, node.y, size, 0, Math.PI * 2);
