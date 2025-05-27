@@ -1,80 +1,75 @@
 import React, { useEffect, useRef } from "react";
 
-const LithtingAround = () => {
-    const canvasRef = useRef(null);
+const LightingAround = () => {
+  const canvasRef = useRef(null);
+  const nodesRef = useRef([]);
+  const mouseRef = useRef({ x: null, y: null });
 
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext("2d");
+  const NODE_COUNT = 1000;
+  const MAX_DISTANCE = 100;
+  const NODE_SIZE = 10;
 
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
 
-        let nodes = []
-        const nodeCount = 1000;
-        const maxDist = 100;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-        let mouse = { x: null, y: null };
+    nodesRef.current = Array.from({ length: NODE_COUNT }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+    }));
 
-        //Crear nodos estáticos
-        for (let i = 0; i < nodeCount; i++) {
-            nodes.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height
-            });
+    const draw = () => {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      const { x: mouseX, y: mouseY } = mouseRef.current;
+
+      nodesRef.current.forEach(({ x, y }) => {
+        let opacity = 0;
+
+        if (mouseX !== null && mouseY !== null) {
+          const dx = x - mouseX;
+          const dy = y - mouseY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < MAX_DISTANCE) {
+            opacity = 1 - dist / MAX_DISTANCE;
+          }
         }
 
-        const draw = () => {
-            context.clearRect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = `rgba(0, 255, 204, ${opacity})`;
+        context.fillRect(x - NODE_SIZE / 2, y - NODE_SIZE / 2, NODE_SIZE, NODE_SIZE);
+      });
 
-            for (let i = 0; i < nodeCount; i++) {
-                const node = nodes[i];
-                let opacity = 0;
+      requestAnimationFrame(draw);
+    };
 
-                if (mouse.x !== null && mouse.y !== null) {
-                    const dx = node.x - mouse.x;
-                    const dy = node.y - mouse.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
+    const handleMouseMove = (e) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
 
-                    if (dist < maxDist) {
-                        opacity = 1 - dist / maxDist;
-                    }
-                }
+    window.addEventListener("mousemove", handleMouseMove);
+    draw();
 
-                context.fillStyle = `rgba(0, 255, 204, ${opacity})`;
-                const size = 10;
-                context.fillRect(node.x - size / 2, node.y - size / 2, size, size);
-            }
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
 
-            requestAnimationFrame(draw);
-        };
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        zIndex: -1,
+        background: "#0e0e0e",
+      }}
+    />
+  );
+};
 
-        // Actualizar posición del mouse
-        const handleMouseMove = (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        };
-
-        window.addEventListener("mousemove", handleMouseMove);
-        draw();
-
-        return () => {
-            window.removeEventListener("mousemove", handleMouseMove);
-        };
-    }, []);
-
-    return (
-        <canvas ref={canvasRef}
-            style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                zIndex: -1,
-                background: "#0e0e0e",
-            }}>
-        </canvas>
-
-    );
-}
-
-export default LithtingAround;
+export default LightingAround;

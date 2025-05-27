@@ -72,8 +72,8 @@ function App() {
 
       {/* <NeuralBackground/> */}
       {/* <LithtingAround/> */}
-      {/* <SquareTransmision/> */}
-      <ExplosionBackground/>
+      <SquareTransmision/>
+      {/* <ExplosionBackground/> */}
       </section>
      
       <Modal show={showModal} onClose={closeModal} title={selectedTitle}>

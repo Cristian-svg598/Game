@@ -1,89 +1,89 @@
 import React, { useEffect, useRef } from "react";
 
 const NeuralBackground = () => {
-    const canvasRef = useRef(null);
+  const canvasRef = useRef(null);
+  const nodesRef = useRef([]);
 
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext("2d");
+  const NODE_COUNT = 100;
+  const MAX_DIST = 120;
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
 
-        let nodes = [];
-        const nodeCount = 100;
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
 
-        for (let i = 0; i < nodeCount; i++) {
-            nodes.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-            });
+    resizeCanvas();
+
+    // Crear nodos
+    nodesRef.current = Array.from({ length: NODE_COUNT }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+    }));
+
+    const draw = () => {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      const nodes = nodesRef.current;
+
+      // Dibujar líneas entre nodos cercanos
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < MAX_DIST) {
+            context.strokeStyle = `rgba(255, 255, 255, ${1 - dist / MAX_DIST})`;
+            context.lineWidth = 1;
+            context.beginPath();
+            context.moveTo(nodes[i].x, nodes[i].y);
+            context.lineTo(nodes[j].x, nodes[j].y);
+            context.stroke();
+          }
         }
+      }
 
-        const draw = () => {
-            context.clearRect(0, 0, canvas.width, canvas.height);
+      // Dibujar nodos y actualizar posiciones
+      nodes.forEach((node) => {
+        context.beginPath();
+        context.arc(node.x, node.y, 2, 0, Math.PI * 2);
+        context.fillStyle = "#00ffcc";
+        context.fill();
 
-            // Dibujar líneas entre nodos cercanos
-            for (let i = 0; i < nodeCount; i++) {
-                for (let j = i + 1; j < nodeCount; j++) {
-                    const dx = nodes[i].x - nodes[j].x;
-                    const dy = nodes[i].y - nodes[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
+        node.x += node.vx;
+        node.y += node.vy;
 
-                    if (dist < 120) {
-                        context.strokeStyle = `rgba(255, 255, 255, ${1 - dist / 120})`;
-                        context.lineWidth = 1;
-                        context.beginPath();
-                        context.moveTo(nodes[i].x, nodes[i].y);
-                        context.lineTo(nodes[j].x, nodes[j].y);
-                        context.stroke();
-                    }
-                }
-            }
+        if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+        if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+      });
 
-            // Dibujar nodos
-            for (let i = 0; i < nodeCount; i++) {
-                const node = nodes[i];
-                context.beginPath();
-                context.arc(node.x, node.y, 2, 0, Math.PI * 2);
-                context.fillStyle = "#00ffcc";
-                context.fill();
+      requestAnimationFrame(draw);
+    };
 
-                node.x += node.vx;
-                node.y += node.vy;
+    draw();
 
-                if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
-                if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
-            }
+    window.addEventListener("resize", resizeCanvas);
+    return () => window.removeEventListener("resize", resizeCanvas);
+  }, []);
 
-            requestAnimationFrame(draw);
-        };
-
-        draw(); // Iniciar animación
-
-        const handleResize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-    return (
-        <canvas
-            ref={canvasRef}
-            style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                zIndex: -1,
-                background: "#0e0e0e",
-            }}
-        />
-    );
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        zIndex: -1,
+        background: "#0e0e0e",
+      }}
+    />
+  );
 };
 
 export default NeuralBackground;
