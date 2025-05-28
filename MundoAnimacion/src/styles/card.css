@@ -1,33 +1,75 @@
+@import './colors.css';
+
 .custom-card {
     width: 18rem;
     height: 20rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 12px;
     background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     margin: 1rem;
-    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .custom-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
+    box-shadow: 0 10px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card-body {
+    flex: 1;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
 }
 
 .card-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--orange-medium);
+    margin-bottom: 0.5rem;
 }
 
 .card-text {
-    flex-grow: 1;
     font-size: 1rem;
-    margin-bottom: 1rem;
+    color: #444;
+    flex-grow: 1;
+}
+
+.card-footer {
+    padding: 0.75rem;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+    background-color: #fafafa;
+}
+
+.card-btn {
+    background-color: var(--orange-light);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card-btn:hover {
+    background-color: var(--orange-medium);
+    transform: scale(1.05);
+}
+
+.custom-card {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 2.5s ease, transform 2.5s ease;
+}
+
+.custom-card.visible {
+  opacity: 1;
+  transform: translateX(0);
 }
