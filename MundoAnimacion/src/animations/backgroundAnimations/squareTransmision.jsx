@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 const SquareTransmision = () => {
   const canvasRef = useRef(null);
   const nodesRef = useRef([]);
-  const mouseRef = useRef({ x: -1000, y: -1000 }); 
+  const mouseRef = useRef({ x: -1000, y: -1000 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -95,17 +95,16 @@ const SquareTransmision = () => {
         });
       });
 
-      // Nodos
       nodes.forEach(node => {
         if (node.glow > 0.01) {
           const size = node.baseSize + node.glow * 6;
+          const halfSize = size / 2;
           context.fillStyle = `rgba(0, 255, 204, ${0.2 + node.glow})`;
-          context.beginPath();
-          context.arc(node.x, node.y, size, 0, Math.PI * 2);
-          context.fill();
+          context.fillRect(node.x - halfSize, node.y - halfSize, size, size);
         }
         node.glow *= 0.95;
       });
+
 
       requestAnimationFrame(draw);
     };

@@ -20,6 +20,8 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [selectedAnimation, setSelectedAnimation] = useState(null);
   const [selectedTitle, setSelectedTitle] = useState('');
+  const [background,setBackground]=useState('stars');
+
 
   const openModalWith = (animationComponent, title) => {
     setSelectedAnimation(animationComponent);
@@ -35,10 +37,28 @@ function App() {
     document.body.classList.remove('modal-open');
   };
 
+  const renderBackground = () => {
+    switch (background) {
+      case "neural":
+        return <NeuralBackground />;
+      case "lighting":
+        return <LithtingAround />;
+      case "square":
+        return <SquareTransmision />;
+      case "explosion":
+        return <ExplosionBackground />;
+      case "stars":
+        return <Starfield />;
+      default:
+        return null;
+    }
+  };
+
+
   return (
     <>
-      <NavBar />
-      <br />
+      {renderBackground()}
+      <NavBar setBackground={setBackground} />
       <section className='animation-3d'>
         <Card
           title="Caja Tridimensional"
@@ -72,11 +92,7 @@ function App() {
 
 
 
-      {/* <NeuralBackground/> */}
-      {/* <LithtingAround/> */}
-      {/* <SquareTransmision/> */}
-      {/* <ExplosionBackground/> */}
-      <Starfield/>
+      
       </section>
      
       <Modal show={showModal} onClose={closeModal} title={selectedTitle}>
