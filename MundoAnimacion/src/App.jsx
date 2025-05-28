@@ -10,6 +10,8 @@ import LibroAnimado from './animations/3dAnimations/libroAnimado.jsx';
 import GaleriaImagenes from './animations/3dAnimations/galeriaImagenes.jsx';
 import GatoCorriendo from './animations/2dAnimations/gatoCorriendo.jsx';
 import BouncingBall from './animations/2dAnimations/bouncingBall.jsx';
+import WhosThatPokemon from './animations/2dAnimations/whosThatPokemon.jsx';
+
 
 import NeuralBackground from './animations/backgroundAnimations/neuronalBackground.jsx';
 import LithtingAround from './animations/backgroundAnimations/lightingAround.jsx';
@@ -23,6 +25,7 @@ const cards = [
   { category: "3d", title: "Galería de imagenes", resume: "Carrusell de imagenes que se desplazan al hacer click en el mouse y girarlo hacia izquierda o derecha", component: <GaleriaImagenes /> },
   { category: "2d", title: "Gato corriendo", resume: "Animación de un gato corriendo", component: <GatoCorriendo /> },
   { category: "2d", title: "Bola saltarina", resume: "Animación de una Bola saltarina", component: <BouncingBall /> },
+  { category: "2d", title: "Who`s That Pokemon", resume: "Adivina el pokemon", component: <WhosThatPokemon /> },
 ];
 
 const backgroundComponents = {
