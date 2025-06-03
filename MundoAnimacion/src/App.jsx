@@ -11,7 +11,8 @@ import GaleriaImagenes from './animations/3dAnimations/galeriaImagenes.jsx';
 import GatoCorriendo from './animations/2dAnimations/gatoCorriendo.jsx';
 import BouncingBall from './animations/2dAnimations/bouncingBall.jsx';
 import WhosThatPokemon from './animations/2dAnimations/whosThatPokemon.jsx';
-
+import ScannerBulbasaur from './animations/2dAnimations/scannerBulbasaur.jsx';
+import Hologram3D from './animations/3dAnimations/hologram3D.jsx';
 
 import NeuralBackground from './animations/backgroundAnimations/neuronalBackground.jsx';
 import LithtingAround from './animations/backgroundAnimations/lightingAround.jsx';
@@ -19,13 +20,18 @@ import SquareTransmision from './animations/backgroundAnimations/squareTransmisi
 import ExplosionBackground from './animations/backgroundAnimations/explosionBackground.jsx';
 import Starfield from './animations/backgroundAnimations/starfield.jsx';
 
+import Bulbasaur from './img/bulbasaur.png'
+
+
 const cards = [
   { category: "3d", title: "Caja Tridimensional", resume: "Cubo que gira 360º", component: <CajaTridimensional /> },
   { category: "3d", title: "Libro Animado", resume: "Animación que hace pasar páginas", component: <LibroAnimado /> },
   { category: "3d", title: "Galería de imagenes", resume: "Carrusell de imagenes que se desplazan al hacer click en el mouse y girarlo hacia izquierda o derecha", component: <GaleriaImagenes /> },
+    { category: "3d", title: "Holograma", resume: "Holograma de una imagen", component: <Hologram3D imageUrl={Bulbasaur} /> },
   { category: "2d", title: "Gato corriendo", resume: "Animación de un gato corriendo", component: <GatoCorriendo /> },
   { category: "2d", title: "Bola saltarina", resume: "Animación de una Bola saltarina", component: <BouncingBall /> },
   { category: "2d", title: "Who`s That Pokemon", resume: "Adivina el pokemon", component: <WhosThatPokemon /> },
+   { category: "2d", title: "Scanner Bulbasaur", resume: "Animacion de escaner", component: <ScannerBulbasaur /> },
 ];
 
 const backgroundComponents = {

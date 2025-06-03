@@ -1,0 +1,48 @@
+body {
+  background: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.scanner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 468px; 
+  margin: 0 auto;
+  border: 2px solid #0ff;
+  box-shadow: 0 0 20px #0ff;
+  background: black;
+  position: relative;
+  overflow: hidden;
+}
+
+.scanner-image {
+  width: 100%;
+  height: auto; 
+  object-fit: contain;
+  filter: brightness(0.6);
+  display: block;
+}
+
+.scan-line {
+  position: absolute;
+  top: -5%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, transparent, #0ff, transparent);
+  box-shadow: 0 0 10px #0ff;
+  animation: scan 3s linear infinite;
+  z-index: 2;
+}
+
+@keyframes scan {
+  0% {
+    top: -5%;
+  }
+  100% {
+    top: 100%;
+  }
+}

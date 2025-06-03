@@ -1,0 +1,18 @@
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin: 0 0 10px 0;
+}
